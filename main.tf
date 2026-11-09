@@ -27,3 +27,12 @@ module "security_group" {
     }
   ]
 }
+
+module "ec2" {
+  source = "./modules/ec2"
+  project_name = "terraform-lab"
+  subnet_id = module.vpc.public_subnet_id
+  security_group_id = module.security_group.security_group_id
+  ami_id = var.ami_id
+  key_name = var.key_name 
+}
